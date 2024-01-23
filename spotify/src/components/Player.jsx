@@ -9,13 +9,17 @@ import previous from '../playerbuttons/Previous.png';
 export default function Player() {
   return (
     <div className="container-fluid fixed-bottom bg-container pt-1">
-      <div className="row">
+        <div className='playing'>
+        <p>now playing</p>
+        </div>
+      <div className="row contenitore">
         <div className="col-lg-10 offset-lg-2">
           <div className="row">
             <div
               className="col-6 col-md-4 col-lg-2 offset-3 offset-md-4 offset-lg-5 playerControls mt-1"
-            >
-              <div className="row">
+              >
+        
+              <div className="row d-flex flex-nowrap container player" >
                 <a href="#">
                   <img src={shuffle} alt="shuffle" />
                 </a>
@@ -47,6 +51,7 @@ export default function Player() {
               </div>
             </div>
           </div>
+       
         </div>
       </div>
     </div>

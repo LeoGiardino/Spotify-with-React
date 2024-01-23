@@ -6,6 +6,8 @@ import Sidebar from './components/Sidebar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AlbumPage from './pages/AlbumPage';
 import ArtistPage from './pages/ArtistPage';
+import Player from './components/Player';
+
 
 function App() {
   return (
@@ -15,10 +17,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Body />} />
           <Route path="/albumPage/:id" element={<AlbumPage />} />
-          <Route path="/artistPage/" element={<ArtistPage />} />
+          <Route path="/artistPage/:id" element={<ArtistPage />} />
           <Route path="*" element={<Body />} />
 
         </Routes>
+        <Player />
       </BrowserRouter>
     </>
   );

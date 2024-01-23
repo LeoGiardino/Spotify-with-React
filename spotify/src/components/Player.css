@@ -1,12 +1,22 @@
-/* BOTTOM PLAYER SECTION*/
-
 .bg-container {
     height: 5.5rem;
     background-color: #282828;
   }
-  
-  .playerControls .row {
-    justify-content: space-between;
+
+  .player {
+    width: 38%;
+    
+  }
+
+  .contenitore{
+    position: relative;
+  }
+
+  .playing{
+    position: absolute;
+    z-index: 5;
+    color: aliceblue;
+    left: 30px;
   }
   
   .playerControls a img {
@@ -23,11 +33,10 @@
   .progress {
     color: white;
     background-color: #414141;
-    height: 3px;
+    --bs-progress-height: 0.3rem !important;
   }
   
   .playBar p {
     margin-bottom: 20px;
     color: white;
   }
-  

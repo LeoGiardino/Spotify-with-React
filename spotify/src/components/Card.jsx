@@ -19,7 +19,7 @@ export default function Card({ songInfo }) {
         <Link href={`/album_page.html?id=${songInfo.album.id}`}>
           Album: "{songInfo.album.title.length < 16 ? songInfo.album.title : `${songInfo.album.title.substring(0, 16)}...`}."<br />
         </Link>
-        <Link href={`/artist_page.html?id=${songInfo.artist.id}`}>
+        <Link to={`/artistPage/${songInfo.artist.id}`}>
           Artist: {songInfo.artist.name}
         </Link>
       </p>

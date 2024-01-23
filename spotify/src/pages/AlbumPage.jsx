@@ -1,21 +1,42 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
+
 
 export default function AlbumPage() {
-  
+  const currentSong = useSelector((state) => state.currentSong);
+
+
   const [albumInfo, setAlbumInfo] = useState();
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioUrl, setAudioUrl] = useState('');
 
   const albumId = useParams();
+  const dispatch = useDispatch();
 
   console.log(albumId);
 
-  const playPreview = (previewUrl) => {
+  const playPreview = (previewUrl, song) => {
     setAudioUrl(previewUrl);
     setIsPlaying(true);
-  };
+
+    if (song) {
+        dispatch({
+            type: 'CANZONE_RIPORODOTTA',
+            payload: {
+                title: song.title || '',
+                artist: song.artist?.name || '',
+                duration: song.duration || '',
+            },
+        });
+    }
+};
+
+  
+  console.log(currentSong);
+  
 
   const stopPreview = () => {
     setAudioUrl('');
@@ -86,23 +107,23 @@ export default function AlbumPage() {
               <div class="col-md-10 mb-5" id="trackList">
 
                 {albumInfo.tracks.data.map((song, index) => {
-                  console.log(song);
+               
                   return (
                     <div key={index} className="py-3 trackHover">
-                      <a href="#" className="card-title trackHover px-3" style={{ color: "white" }} onClick={() => togglePreview(song.preview)}>{song.title}</a>
+                      <a href="#" className="card-title trackHover px-3" style={{ color: "white" }} onClick={() => {togglePreview(song.preview)}}>{song.title}</a>
                       <small className="duration" style={{ color: "white" }}>{song.duration}</small>
                     </div>
                   );
                 })}
                 {isPlaying && (
-                <audio
-                  controls
-                  autoPlay
-                  onEnded={stopPreview}
-                  src={audioUrl}
-                  style={{ width: '100%' }}
-                />
-              )}
+                  <audio
+                    controls
+                    autoPlay
+                    onEnded={stopPreview}
+                    src={audioUrl}
+                    style={{ width: '100%' }}
+                  />
+                )}
 
                 <div>
 
