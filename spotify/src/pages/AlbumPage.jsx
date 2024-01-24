@@ -3,10 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
+import { playSong } from '../actions';
 
 
 export default function AlbumPage() {
-  const currentSong = useSelector((state) => state.currentSong);
+  const state  = useSelector(state => state);
 
 
   const [albumInfo, setAlbumInfo] = useState();
@@ -22,20 +23,9 @@ export default function AlbumPage() {
     setAudioUrl(previewUrl);
     setIsPlaying(true);
 
-    if (song) {
-        dispatch({
-            type: 'CANZONE_RIPORODOTTA',
-            payload: {
-                title: song.title || '',
-                artist: song.artist?.name || '',
-                duration: song.duration || '',
-            },
-        });
-    }
-};
+  }
 
-  
-  console.log(currentSong);
+console.log(state);
   
 
   const stopPreview = () => {
@@ -89,7 +79,7 @@ export default function AlbumPage() {
       </div>
       {albumInfo && (
         <div class="row">
-          <div class="col-md-3 pt-5 text-center" id="img-container">
+          <div class="col-md-3 pt-5 text-center" id="img-container" >
             <img src={albumInfo.cover_medium} alt="" />
             <div class="mt-4 text-center">
               <p class="album-title">{albumInfo.title}</p>
@@ -110,7 +100,7 @@ export default function AlbumPage() {
                
                   return (
                     <div key={index} className="py-3 trackHover">
-                      <a href="#" className="card-title trackHover px-3" style={{ color: "white" }} onClick={() => {togglePreview(song.preview)}}>{song.title}</a>
+                      <a href="#" className="card-title trackHover px-3" style={{ color: "white" }} onClick={() => {togglePreview(song.preview); dispatch(playSong(song))}}>{song.title}</a>
                       <small className="duration" style={{ color: "white" }}>{song.duration}</small>
                     </div>
                   );

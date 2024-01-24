@@ -1,6 +1,6 @@
 export const playSong = (songData) => {
     return {
-      type: 'CANZONE_RIPRODOTTA',
+      type: 'CURRENT_SONG',
       payload: songData,
     };
   };
