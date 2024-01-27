@@ -1,19 +1,21 @@
 // src/store/index.js
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import storeReducer from '../reducers';
 
-const initialState = [
+const state = {
+  song: [], // Inizializza song come un array vuoto
+  likes: []
+}
 
+const bigReducer = combineReducers({
+  song: storeReducer,
+  likes: likesReducer
+});
 
+console.log(state);
 
-
-
-  
-];
-
-console.log(initialState);
+export const store = createStore(bigReducer, state);
 
 // STO CREANDO LO STATO DENTRO LO STORE
 // storeReducer = funziona pura che andrà a modificare lo store
 // lo esporto per poterlo usare nell'app tramite il provider
-export const store = createStore(storeReducer, initialState);

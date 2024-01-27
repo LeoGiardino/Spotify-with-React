@@ -8,21 +8,28 @@ import previous from '../playerbuttons/Previous.png';
 import { useSelector } from 'react-redux';
 
 export default function Player() {
-  const state = useSelector(state => state);
 
+  const state  = useSelector(state => state.song);
+
+  console.log(state.song);
+  
   return (
     <>
-      {state.length > 0 && (
+        
+
+
         <div className="container-fluid fixed-bottom bg-container pt-1">
+        {state.song !== undefined && (
           <div className='playing d-flex'>
             <div>
-              <img src={state[state.length - 1].album.cover_medium} alt="" style={{ width: "50px" }} />
+              <img src={state?.song[state?.song.length - 1]?.album.cover_medium} alt="" style={{ width: "50px" }} />
             </div>
             <div className='ms-2 text-truncate'>
-              <p className='mb-0 text-truncate'>{state[state.length - 1].title}</p>
-              <p className='text-truncate'>{state[state.length - 1].artist.name}</p>
+              <p className='mb-0 text-truncate'>{state?.song[state?.song.length - 1]?.title}</p>
+              <p className='text-truncate'>{state?.song[state?.song.length - 1]?.artist.name}</p>
             </div>
           </div>
+            )}
           <div className="row contenitore">
             <div className="col-lg-10 offset-lg-2">
               <div className="row">
@@ -64,7 +71,9 @@ export default function Player() {
             </div>
           </div>
         </div>
-      )}
+
+      
+
     </>
   );
 }
