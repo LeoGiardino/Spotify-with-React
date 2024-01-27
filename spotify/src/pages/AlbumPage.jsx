@@ -59,8 +59,9 @@ export default function AlbumPage() {
   const handleLikes = (e, id) => {
     setLikes((prevLikes) => ({
       ...prevLikes,
-      [id]: !prevLikes[id], // Inverte il valore del like per la canzone specifica
+      [id]: !prevLikes[id], 
     }));
+    console.log(likes);
   };
 
   return (

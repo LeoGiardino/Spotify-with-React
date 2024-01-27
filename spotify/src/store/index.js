@@ -1,6 +1,7 @@
 // src/store/index.js
 import { combineReducers, createStore } from 'redux';
 import storeReducer from '../reducers';
+import likesReducer from '../reducers/likeReducer';
 
 const state = {
   song: [], // Inizializza song come un array vuoto

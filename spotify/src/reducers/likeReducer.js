@@ -1,4 +1,4 @@
-export default function storeReducer(state = [], action) {
+export default function likesReducer(state = [], action) {
 
     console.log('Current State:', state);
     console.log('Action:', action);
